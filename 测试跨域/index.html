@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+<div id="divFalg">测试跨域</div>
+</body>
+</html>
+<script  src='jquery.min.js'></script>
+<script>
+function jsonpCallback(data){
+alert(1)
+  console.log(data);
+}
+
+$.ajax({
+        url: 'http://localhost:60690/Home/index', //请求的url
+		
+        dataType: "jsonp", //将请求类型设为值jsonp
+
+        //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback) 
+        jsonp: "callback", //服务端会通过HttpContext.Request["callback"]; 拿到jsonpCallback这个回调函数的名称    
+ 
+        jsonpCallback: "jsonpCallback", //自定义的jsonp回调函数名称"jsonpCallback"，返回的json也必须有这个函数名称
+ 
+        success: function (json) {
+		debugger
+           
+        },
+        error: function (xhr, status, error)
+        { console.log(xhr); }
+    });
+</script>
+
